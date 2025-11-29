@@ -42,7 +42,11 @@ $email_content .= "Rules Ready: $rules_ready\n\n";
 $email_content .= "Description:\n$description\n";
 
 // Email Headers
-$headers = "From: $name <$email>";
+// IMPORTANT: The 'From' address MUST be an email created on your Hostinger domain (e.g., info@kodologic.com)
+// to prevent the email from being blocked as spam/spoofing.
+$headers = "From: info@kodologic.com\r\n";
+$headers .= "Reply-To: $email\r\n";
+$headers .= "X-Mailer: PHP/" . phpversion();
 
 // Send Email
 if (mail($recipient, $subject, $email_content, $headers)) {
